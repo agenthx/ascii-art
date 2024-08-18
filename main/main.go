@@ -15,7 +15,7 @@ func main() {
 		return
 	}
 
-  ascii:= '!'
+  // ascii:= '!'
 
   count := 0
 	str := strings.Split(file, "\n")
@@ -27,7 +27,7 @@ func main() {
       if i%8 == 0{
         count++
       }
-      
+
 			fmt.Println(str[i])
 		}
 	}
