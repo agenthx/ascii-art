@@ -1,8 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	input := "lol\n"
-	fmt.Println(input)
+	if len(os.Args) != 2 {
+		fmt.Println("kiki")
+		return
+	}
 }

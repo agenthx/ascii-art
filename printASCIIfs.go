@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func PrintASCII(str []string, input string) {
+func PrintASCIIfs(str []string, input string) {
 	//if input is empty return nothing
 	if input == "" {
 		return
