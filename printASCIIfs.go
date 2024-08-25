@@ -27,11 +27,11 @@ func PrintASCIIfs(str []string, input string) {
 			fmt.Println()
 		} else {
 			// Create a slice to store the lines for the current row
-			lineSlice := make([]string, 0, len(line))
+			var lineSlice string
 			// Iterate over the 8 rows for each line
 			for i := 0; i < 8; i++ {
 				// Iterate over the characters in the current line
-				for _, ch := range line {
+				for j, ch := range line {
 					// Check if the character is a valid ASCII character
 					if ch < 32 || ch > 128 {
 						fmt.Println("error input")
@@ -40,12 +40,18 @@ func PrintASCIIfs(str []string, input string) {
 					// Calculate the line index for the current character
 					lineIndex := 1 + int(ch-32)*9 + i
 					// Append the corresponding string to the line slice
-					lineSlice = append(lineSlice, str[lineIndex])
+					var substring string
+					if ContSub(string(ch),substring,line, j) {
+						lineSlice += "\033[31m" + str[lineIndex] + "\033[0m"
+					} else {
+						lineSlice += str[lineIndex]
+					}
 				}
 				// Join the lines in the slice and print the row
-				fmt.Println(strings.Join(lineSlice, ""))
+				fmt.Println(lineSlice)
+
 				// Clear the line slice for the next row
-				lineSlice = lineSlice[:0]
+				lineSlice = ""
 			}
 		}
 	}
