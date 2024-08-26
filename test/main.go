@@ -1,6 +1,9 @@
 package main
 
-// "os"
+import (
+	"fmt"
+	"regexp"
+)
 
 func main() {
 	// var color string
@@ -22,11 +25,21 @@ func main() {
 	// case "cyan":
 	// 	color = "\033[36m"
 	// }
-	// sub := "ime"
-	// line := "lime is mine"
-	// words := strings.Split(line, " ")
-	// for _, word := range words {
-	// 	//
+	// func ContSub(ch, sub, line string, index int) bool {
+	//take in the full line and look for where the substrings are
+	//see the ch given and if its the right ch of the substring using the index
+	/*lime is mine*/
+
+	// return true
 	// }
+	sub := "ime"
+	// ch := "l"
+	line := "lime is mine kime"
+	// index := 1
+
+	reI := regexp.MustCompile(sub)
+	intt := reI.FindAllStringIndex(line, -1)
+	fmt.Println(intt[0][0])
+	
 
 }

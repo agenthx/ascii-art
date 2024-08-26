@@ -26,6 +26,10 @@ func PrintASCIIfs(str []string, input string) {
 		if line == "" {
 			fmt.Println()
 		} else {
+			//find where is the substring in the following line
+			sub:="ime"
+			reI := regexp.MustCompile(sub)
+			indOfSub := reI.FindAllStringIndex(line, -1)
 			// Create a slice to store the lines for the current row
 			var lineSlice string
 			// Iterate over the 8 rows for each line
@@ -40,8 +44,7 @@ func PrintASCIIfs(str []string, input string) {
 					// Calculate the line index for the current character
 					lineIndex := 1 + int(ch-32)*9 + i
 					// Append the corresponding string to the line slice
-					var substring string
-					if ContSub(string(ch),substring,line, j) {
+					if ContSub(indOfSub, j) {
 						lineSlice += "\033[31m" + str[lineIndex] + "\033[0m"
 					} else {
 						lineSlice += str[lineIndex]
