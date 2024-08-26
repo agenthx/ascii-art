@@ -14,7 +14,7 @@ func main() {
 		return
 	}
 	//store the string given in the argument
-	input := os.Args[1]
+	input := os.Args[2]
 	//the default is standard style and if otherwise do a switch case
 	banner := "standard.txt"
 	if len(os.Args) == 3 {

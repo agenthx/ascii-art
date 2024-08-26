@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"regexp"
 )
 
 func main() {
@@ -11,7 +10,7 @@ func main() {
 
 	// switch os.Args[1] {
 	// case "gray":
-	// 	color = "\033[30m"
+	// 	color = "\033[30mhi hello"
 	// case "red":
 	// 	color = "\033[31m"
 	// case "green":
@@ -30,16 +29,14 @@ func main() {
 	//see the ch given and if its the right ch of the substring using the index
 	/*lime is mine*/
 
-	// return true
-	// }
-	sub := "ime"
-	// ch := "l"
-	line := "lime is mine kime"
-	// index := 1
+	// // return true
+	// // }
+	// sub := "ime"
+	// // ch := "l"
+	// line := "lime is mine kime"
+	// // index := 1
 
-	reI := regexp.MustCompile(sub)
-	intt := reI.FindAllStringIndex(line, -1)
-	fmt.Println(intt[0][0])
-	
-
+	// reI := regexp.MustCompile(sub)
+	// intt := reI.FindAllStringIndex(line, -1)
+	// fmt.Println(intt[0][0])
 }
