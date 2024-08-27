@@ -27,7 +27,7 @@ func PrintASCIIfs(str []string, input string) {
 			fmt.Println()
 		} else {
 			//find where is the substring in the following line
-			sub:="ime"
+			sub:="i"
 			reI := regexp.MustCompile(sub)
 			indOfSub := reI.FindAllStringIndex(line, -1)
 			// Create a slice to store the lines for the current row
