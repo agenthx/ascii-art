@@ -4,30 +4,53 @@ import (
 	"fmt"
 	"os"
 	"piscine"
+	"regexp"
 	"strings"
 )
 
 func main() {
-	//check if the arguments given are not exactly 2
-	if len(os.Args) < 2 {
-		fmt.Println("error number of arguments")
+	//check if the arguments given are arguments are not too little or much
+	if len(os.Args) < 2 || len(os.Args) > 5 {
+		fmt.Println("error: no.of arguments")
 		return
 	}
-	//store the string given in the argument
-	input := os.Args[2]
-	//the default is standard style and if otherwise do a switch case
 	banner := "standard.txt"
-	if len(os.Args) == 3 {
-		switch os.Args[2] {
-		case "shadow":
-			banner = "shadow.txt"
-		case "thinkertoy":
-			banner = "thinkertoy.txt"
-		case "standard":
-			break
-		default:
-			fmt.Println("Error: templates are 'standard' 'shadow' 'thinkertoy'")
-			return
+	var color string
+	var sub string
+	var input string
+	b4Last := os.Args[len(os.Args)-2]
+	lastArg := os.Args[len(os.Args)-1]
+	//find the banner
+	reF := regexp.MustCompile(`(?i)(standard|shadow|thinkertoy)`)
+	//if the argument starts with color flag
+	if strings.Contains(os.Args[1], "--color=") {
+		//store the color name
+		color = strings.TrimPrefix(os.Args[1], "--color=")
+		//if the last arg is a banner then b4 it is the string
+		if reF.MatchString(lastArg) {
+			banner = lastArg + ".txt"
+			input = b4Last
+		} else {
+			if len(os.Args) >= 5 {
+				fmt.Println("Error: arguments given are incorrect")
+				os.Exit(1)
+			}
+			input = lastArg
+		}
+		//if arg 2 is differnt than input put it as sub
+		if input == os.Args[2] {
+			sub = input
+		} else {
+			sub = os.Args[2]
+		}
+	} else {
+		if len(os.Args) >= 4 {
+			fmt.Println("Error: arguments given are incorrect")
+			os.Exit(2)
+		}
+		input = os.Args[1]
+		if reF.MatchString(lastArg) && len(os.Args) > 2 {
+			banner = os.Args[2] + ".txt"
 		}
 	}
 	//open and store the contents of the standard.txt file
@@ -35,9 +58,8 @@ func main() {
 	if err != nil {
 		fmt.Print(err)
 	}
-
 	//split the contents of standard.txt file into line by line and store each line in a slice in the array
 	str := strings.Split(string(file), "\n")
 	//give the input and str into PrintASCII function
-	piscine.PrintASCIIfs(str, input)
+	piscine.AsciiFsColor(str, input, sub, color)
 }
