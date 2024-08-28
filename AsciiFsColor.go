@@ -29,7 +29,7 @@ func AsciiFsColor(str []string, input, sub, color string) {
 		case "yellow":
 			color = "\033[33m"
 		case "blue":
-			color = "\033[34m"
+			color = "\033[34m"//jhf
 		case "purple":
 			color = "\033[35m"
 		case "cyan":
