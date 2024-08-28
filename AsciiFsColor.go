@@ -29,13 +29,15 @@ func AsciiFsColor(str []string, input, sub, color string) {
 		case "yellow":
 			color = "\033[33m"
 		case "blue":
-			color = "\033[34m"//jhf
+			color = "\033[34m"
 		case "purple":
 			color = "\033[35m"
 		case "cyan":
 			color = "\033[36m"
 		case "white":
 			color = "\033[00m"
+		case "orange":
+			color = "\033[38;5;208m"
 		default:
 			fmt.Println("invalid color")
 			os.Exit(3)
@@ -55,7 +57,8 @@ func AsciiFsColor(str []string, input, sub, color string) {
 	lines := strings.Split(input2, "\n")
 	//for sub things
 	var sub2 []string
-	if flag && sub == ""{
+	var indOfSub [][]int
+	if flag && sub != "" {
 		sub = strings.ReplaceAll(sub, "\\n", "\n")
 		sub2 = strings.Split(sub, "\n")
 	}
@@ -65,9 +68,20 @@ func AsciiFsColor(str []string, input, sub, color string) {
 			fmt.Println()
 		} else {
 			//find where is the substring in the following line
-			var indOfSub [][]int
-			if flag {
+			if flag && sub2 != nil && len(sub2) != 1 {
 				reI := regexp.MustCompile(sub2[s])
+				indOfSub = reI.FindAllStringIndex(line, -1)
+			} else if flag && sub2 != nil && len(sub2) > 1 {
+				reI := regexp.MustCompile(sub2[0])
+				indOfSub = reI.FindAllStringIndex(line, -1)
+			} else if flag {
+				sub = strings.ReplaceAll(sub, "+", "\\+")
+				sub = strings.ReplaceAll(sub, "$", "\\$")
+				sub = strings.ReplaceAll(sub, "^", "\\^")
+				sub = strings.ReplaceAll(sub, "*", "\\*")
+				sub = strings.ReplaceAll(sub, "(", "\\(")
+				sub = strings.ReplaceAll(sub, ")", "\\)")
+				reI := regexp.MustCompile(sub)
 				indOfSub = reI.FindAllStringIndex(line, -1)
 			}
 			// Create a slice to store the lines for the current row
