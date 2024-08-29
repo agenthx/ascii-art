@@ -7,9 +7,17 @@ import (
 	"strings"
 )
 
-func AsciiFsColor(str []string, input, sub, color string) {
+func AsciiFsColor(str []string, input, sub, color, fileN string) {
+	//find if fileN is there
+	var file *os.File
+	if fileN != "" {
+		file, _ = os.Create(fileN)
+	}
 	//if input is empty return nothing
 	if input == "" {
+		if fileN != "" {
+			file.WriteString("")
+		}
 		return
 	}
 	//check if color string is empty if not do case to match it
@@ -48,8 +56,7 @@ func AsciiFsColor(str []string, input, sub, color string) {
 	// Replace all "\n" in the input string with an actual newline
 	input2 := strings.ReplaceAll(input, "\\n", "\n")
 	//check if the input consists of only \n
-	reN := regexp.MustCompile(`[^\\n]`)
-	if !reN.MatchString(input) && input != "n" {
+	if OnlyN(input) {
 		fmt.Print(input2)
 		return
 	}
@@ -105,8 +112,11 @@ func AsciiFsColor(str []string, input, sub, color string) {
 					}
 				}
 				// Join the lines in the slice and print the row
-				fmt.Println(lineSlice)
-
+				if fileN != "" {
+					file.WriteString(lineSlice + "\n")
+				} else {
+					fmt.Println(lineSlice)
+				}
 				// Clear the line slice for the next row
 				lineSlice = ""
 			}
