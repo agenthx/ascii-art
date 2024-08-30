@@ -56,7 +56,8 @@ func AsciiFsColor(str []string, input, sub, color, fileN string) {
 	// Replace all "\n" in the input string with an actual newline
 	input2 := strings.ReplaceAll(input, "\\n", "\n")
 	//check if the input consists of only \n
-	if OnlyN(input) {
+	reN := regexp.MustCompile(`.`)
+	if !reN.MatchString(input2) {
 		fmt.Print(input2)
 		return
 	}
@@ -109,6 +110,7 @@ func AsciiFsColor(str []string, input, sub, color, fileN string) {
 						lineSlice += color + str[lineIndex] + reset
 					} else {
 						lineSlice += str[lineIndex]
+						fmt.Println(lineSlice)
 					}
 				}
 				// Join the lines in the slice and print the row

@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
+	"regexp"
 )
 
 func main() {
-		fmt.Println("\033[38;5;208m hi\033[0m")
+	input := "n"
+	reN := regexp.MustCompile(`.`)
+	fmt.Println(reN.MatchString(input))
 }
