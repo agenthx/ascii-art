@@ -43,7 +43,7 @@ func AsciiFsColor(str []string, input, sub, color, fileN string) {
 		case "cyan":
 			color = "\033[36m"
 		case "white":
-			color = "\033[00m"
+			color = "\033[37m"
 		case "orange":
 			color = "\033[38;5;208m"
 		default:
@@ -110,7 +110,6 @@ func AsciiFsColor(str []string, input, sub, color, fileN string) {
 						lineSlice += color + str[lineIndex] + reset
 					} else {
 						lineSlice += str[lineIndex]
-						fmt.Println(lineSlice)
 					}
 				}
 				// Join the lines in the slice and print the row
