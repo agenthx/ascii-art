@@ -58,7 +58,11 @@ func AsciiFsColor(str []string, input, sub, color, fileN string) {
 	//check if the input consists of only \n
 	reN := regexp.MustCompile(`.`)
 	if !reN.MatchString(input2) {
-		fmt.Print(input2)
+		if fileN != "" {
+			file.WriteString(input2)
+		} else {
+			fmt.Print(input2)
+		}
 		return
 	}
 	// Split the input string into lines

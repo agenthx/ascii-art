@@ -48,8 +48,8 @@ func main() {
 		}
 	} else if strings.Contains(os.Args[1], "--output=") {
 		fileN = strings.TrimPrefix(os.Args[1], "--output=")
-		if reF.MatchString(fileN) && !reT.MatchString(fileN) {
-			fmt.Println("Error: can't write in banner file")
+		if reF.MatchString(fileN) || !reT.MatchString(fileN) {
+			fmt.Println("Error: File name invalid!")
 			os.Exit(3)
 		}
 		input = os.Args[2]
