@@ -78,5 +78,5 @@ func main() {
 	//split the contents of standard.txt file into line by line and store each line in a slice in the array
 	str := strings.Split(string(file), "\n")
 	//give the input and str into PrintASCII function
-	piscine.AsciiFsColor(str, input, sub, color, fileN)
+	piscine.AsciiFCO(str, input, sub, color, fileN)
 }
