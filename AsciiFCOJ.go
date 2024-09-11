@@ -3,24 +3,26 @@ package piscine
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
 func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
-	//find if fileN is there
+	// find if fileN is there
 	var file *os.File
 	if fileN != "" {
 		file, _ = os.Create(fileN)
 	}
-	//if input is empty return nothing
+	// if input is empty return nothing
 	if input == "" {
 		if fileN != "" {
 			file.WriteString("")
 		}
 		return
 	}
-	//check if color string is empty if not do case to match it
+	// check if color string is empty if not do case to match it
 	var flag bool
 	var reset string
 	if color != "" {
@@ -52,10 +54,30 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 		}
 
 	}
-
+	// check if align string is not empty
+	var lt int
+	if align != "" {
+		switch align {
+		case "right":
+			cmd := exec.Command("tput", "cols")
+			cmd.Stdin = os.Stdin
+			out, err := cmd.Output()
+			lenOfT := strings.TrimSpace(string(out))
+			lt, _ = strconv.Atoi(lenOfT)
+			if err != nil {
+				fmt.Println("Error: ", err)
+			}
+		case "left":
+			// do this
+		case "center":
+			// do this
+		case "justify":
+			// do this
+		}
+	}
 	// Replace all "\n" in the input string with an actual newline
 	input2 := strings.ReplaceAll(input, "\\n", "\n")
-	//check if the input consists of only \n
+	// check if the input consists of only \n
 	reN := regexp.MustCompile(`.`)
 	if !reN.MatchString(input2) {
 		if fileN != "" {
@@ -67,7 +89,7 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 	}
 	// Split the input string into lines
 	lines := strings.Split(input2, "\n")
-	//for sub things
+	// for sub things
 	var sub2 []string
 	var indOfSub [][]int
 	if flag && sub != "" {
@@ -79,7 +101,7 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 		if line == "" {
 			fmt.Println()
 		} else {
-			//find where is the substring in the following line
+			// find where is the substring in the following line
 			if flag && sub2 != nil && len(sub2) != 1 {
 				reI := regexp.MustCompile(sub2[s])
 				indOfSub = reI.FindAllStringIndex(line, -1)
@@ -120,7 +142,14 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 				if fileN != "" {
 					file.WriteString(lineSlice + "\n")
 				} else {
-					fmt.Println(lineSlice)
+					// lenOfS
+					var kiki string
+					spaces := lt - len(lineSlice)
+					// fmt.Println(spaces,lt,len(lineSlice))
+					for i := 1; i < spaces; i++ {
+						kiki += " "
+					}
+					fmt.Println(kiki,lineSlice)
 				}
 				// Clear the line slice for the next row
 				lineSlice = ""
