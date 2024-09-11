@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func AsciiFCO(str []string, input, sub, color, fileN string) {
+func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 	//find if fileN is there
 	var file *os.File
 	if fileN != "" {
