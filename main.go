@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-	"piscine"
+	piscine "piscine/functions"
 	"regexp"
 	"strings"
 )
@@ -101,7 +101,7 @@ func main() {
 		}
 	}
 	//open and store the contents of the standard.txt file
-	file, err := os.ReadFile(banner)
+	file, err := os.ReadFile("banner/" + banner)
 	if err != nil {
 		fmt.Print(err)
 	}

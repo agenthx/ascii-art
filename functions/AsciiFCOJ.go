@@ -3,9 +3,7 @@ package piscine
 import (
 	"fmt"
 	"os"
-	"os/exec"
 	"regexp"
-	"strconv"
 	"strings"
 )
 
@@ -55,18 +53,10 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 
 	}
 	// check if align string is not empty
-	var lt int
-	if align != "" {
+	if align != "" { //if an align was specified do this
 		switch align {
-		case "right":
-			cmd := exec.Command("tput", "cols")
-			cmd.Stdin = os.Stdin
-			out, err := cmd.Output()
-			lenOfT := strings.TrimSpace(string(out))
-			lt, _ = strconv.Atoi(lenOfT)
-			if err != nil {
-				fmt.Println("Error: ", err)
-			}
+		case "right": 
+			//if it was right
 		case "left":
 			// do this
 		case "center":
@@ -144,7 +134,7 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 				} else {
 					// lenOfS
 					var kiki string
-					spaces := lt - len(lineSlice)
+					spaces := width() - len(lineSlice)
 					// fmt.Println(spaces,lt,len(lineSlice))
 					for i := 1; i < spaces; i++ {
 						kiki += " "
