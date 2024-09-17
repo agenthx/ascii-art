@@ -10,7 +10,7 @@ import (
 
 func main() {
 	cmd := exec.Command("tput", "cols")
-	cmd.Stdin = os.Stdin
+	cmd.Stdin = os.Stdin//d
 	out, err := cmd.Output()
 	fmt.Print(string(out))
 	if err != nil {
