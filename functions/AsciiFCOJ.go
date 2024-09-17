@@ -52,19 +52,6 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 		}
 
 	}
-	// check if align string is not empty
-	if align != "" { //if an align was specified do this
-		switch align {
-		case "right": 
-			//if it was right
-		case "left":
-			// do this
-		case "center":
-			// do this
-		case "justify":
-			// do this
-		}
-	}
 	// Replace all "\n" in the input string with an actual newline
 	input2 := strings.ReplaceAll(input, "\\n", "\n")
 	// check if the input consists of only \n
@@ -129,17 +116,25 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 					}
 				}
 				// Join the lines in the slice and print the row
+				// lenOfS
 				if fileN != "" {
 					file.WriteString(lineSlice + "\n")
-				} else {
-					// lenOfS
-					var kiki string
-					spaces := width() - len(lineSlice)
-					// fmt.Println(spaces,lt,len(lineSlice))
-					for i := 1; i < spaces; i++ {
-						kiki += " "
+				} else if align == "" {
+					fmt.Println(lineSlice)
+				}
+				// check if align string is not empty
+				if align != "" { //if an align was specified do this
+					spaces:=Spaces(align, len(lineSlice))
+					switch align {
+					case "right":
+						fmt.Println(spaces, lineSlice)
+					case "left":
+						fmt.Println(lineSlice)
+					case "center":
+						fmt.Println(spaces, lineSlice, spaces)
+					case "justify":
+						// do this
 					}
-					fmt.Println(kiki,lineSlice)
 				}
 				// Clear the line slice for the next row
 				lineSlice = ""

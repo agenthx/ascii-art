@@ -1,21 +1,20 @@
 package main
 
-import (
-	"fmt"
-	"os"
-	"os/exec"
-	"strconv"
-	"strings"
-)
+// import (
+// 	"fmt"
+// 	"os"
+// 	piscine "piscine/functions"
+// 	"strings"
+// )
 
 func main() {
-	cmd := exec.Command("tput", "cols")
-	cmd.Stdin = os.Stdin//d
-	out, err := cmd.Output()
-	fmt.Print(string(out))
-	if err != nil {
-		fmt.Println("Error: ", err)
-	}
-	hi:=strings.TrimSpace(string(out))
-	fmt.Println(strconv.Atoi(hi))
+// 	banner := "standard.txt"
+// 	file, err := os.ReadFile(banner)
+// 	if err != nil {
+// 		fmt.Print(err)
+// 	}
+// 	str := strings.Split(string(file), "\n")
+// 	piscine.AsciiFCOJ(str, "input", "in", "orange", "")
+// 	piscine.AsciiFCOJ(str, "shush", "sh", "purple", "")
+// 	piscine.AsciiFCOJ(str, "shush", "u", "blue", "")
 }
