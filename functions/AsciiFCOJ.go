@@ -73,6 +73,7 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 		sub = strings.ReplaceAll(sub, "\\n", "\n")
 		sub2 = strings.Split(sub, "\n")
 	}
+	fmt.Println(NoSpacelen(str, lines))
 	// Iterate over the lines
 	for s, line := range lines {
 		if line == "" {
@@ -120,11 +121,11 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 				if fileN != "" {
 					file.WriteString(lineSlice + "\n")
 				} else if align == "" {
-					fmt.Println(lineSlice)
+					fmt.Println(lineSlice, len(lineSlice))
 				}
 				// check if align string is not empty
 				if align != "" { //if an align was specified do this
-					spaces:=Spaces(align, len(lineSlice))
+					spaces := Spaces(align, len(lineSlice))
 					switch align {
 					case "right":
 						fmt.Println(spaces, lineSlice)
@@ -132,6 +133,7 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 						fmt.Println(lineSlice)
 					case "center":
 						fmt.Println(spaces, lineSlice, spaces)
+					}
 				}
 				// Clear the line slice for the next row
 				lineSlice = ""

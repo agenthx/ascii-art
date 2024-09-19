@@ -65,6 +65,10 @@ func main() {
 		}
 		input = os.Args[2]
 	} else if strings.Contains(os.Args[1], "--align=") {
+		if len(os.Args) <= 2 {
+			fmt.Println("no enough args")
+			os.Exit(6)
+		}
 		align = strings.TrimPrefix(os.Args[1], "--align=") //where to align text
 		//check if the align is valid
 		if !reA.MatchString(align) {
@@ -74,7 +78,7 @@ func main() {
 		input = os.Args[2]
 	} else {
 		if len(os.Args) >= 4 {
-			fmt.Println("Usage: go run . [OPTION] [STRING] [BANNER]\nExample: go run . --output=<fileName.txt> something standard")
+			fmt.Println("Usage: go run . [OPTION] [STRING] [BANNER]\nExample: go run . --[OPTION]=<fileName.txt> something standard")
 			os.Exit(2)
 		}
 		input = os.Args[1]
