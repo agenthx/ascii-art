@@ -132,9 +132,6 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 						fmt.Println(lineSlice)
 					case "center":
 						fmt.Println(spaces, lineSlice, spaces)
-					case "justify":
-						// do this
-					}
 				}
 				// Clear the line slice for the next row
 				lineSlice = ""
