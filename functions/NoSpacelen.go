@@ -39,6 +39,10 @@ func NoSpacelen(str, lines []string) ([]int, []int) {
 					}
 				}
 			}
+			if len(lineSlice) > width() {
+				fmt.Println("can't fit all dat")
+				os.Exit(8)
+			}
 			length = append(length, len(lineSlice))
 		}
 		lineSlice = ""

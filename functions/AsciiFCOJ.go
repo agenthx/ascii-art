@@ -74,7 +74,7 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 		sub2 = strings.Split(sub, "\n")
 	}
 	noSpaceLength, gaps := NoSpacelen(str, lines)
-	if gaps[0] < 1 {
+	if gaps[0] < 1 && align == "justify" {
 		align = "center"
 	}
 	if align == "justify" {
