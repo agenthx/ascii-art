@@ -128,7 +128,7 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 				if fileN != "" {
 					file.WriteString(lineSlice + "\n")
 				} else if align == "" {
-					fmt.Println(lineSlice, len(lineSlice))
+					fmt.Println(lineSlice)
 				}
 				// check if align string is not empty
 				if align != "" { //if an align was specified do this
