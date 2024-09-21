@@ -3,27 +3,21 @@ package piscine
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
-func NoSpacelen(str, lines []string) ([]int, []int) {
+func Justify(str, lines []string, noOfS, noSpaceLength []int) {
 	// Create a slice to store the lines for the current row
 	var lineSlice string
-	var words string
-	var arrWords []string
-	var no []int
-	var length []int
+	var space string
 
 	// Iterate over the lines
-	for _, line := range lines {
+	for i, line := range lines {
 		if line == "" {
 			fmt.Println()
 		} else {
-			words = line
-			arrWords = strings.Split(words, " ")
-			no = append(no, len(arrWords)-1)
+			space = Ss(i, noOfS[i], noSpaceLength[i])
 			// Iterate over the 8 rows for each line
-			for i := 0; i < 1; i++ {
+			for i := 0; i < 8; i++ {
 				// Iterate over the characters in the current line
 				for _, ch := range line {
 					// Check if the character is a valid ASCII character
@@ -36,12 +30,21 @@ func NoSpacelen(str, lines []string) ([]int, []int) {
 					// Append the corresponding string to the line slice
 					if ch != ' ' {
 						lineSlice += str[lineIndex]
+					} else {
+						lineSlice += space
 					}
 				}
+				fmt.Println(lineSlice)
+				lineSlice = ""
 			}
-			length = append(length, len(lineSlice))
 		}
-		lineSlice = ""
 	}
-	return length, no //length of words with no spaces and how many spaces to split into
+}
+
+func Ss(i, noOfS, noSpaceLength int) string {
+	var space string
+	for j := 0; j < (width()-noSpaceLength)/noOfS; j++ {
+		space += " "
+	}
+	return space
 }
