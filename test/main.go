@@ -14,8 +14,7 @@ func main() {
 		fmt.Print(err)
 	}
 	str := strings.Split(string(file), "\n")
-	piscine.AsciiFCOJ(str, "a -> A b -> B c -> C", "", "", "", "justify")
-	piscine.AsciiFCOJ(str, "#$%&\"", "", "", "", "center")
+	piscine.AsciiFCOJ(str, "hahah\nhahhah", "", "", "", "center")
 	piscine.AsciiFCOJ(str, "1 two 4", "", "", "", "justify")
-	piscine.AsciiFCOJ(str, "23/32", "", "", "", "right")
+	piscine.AsciiFCOJ(str, "23/32", "", "", "", "left")
 }

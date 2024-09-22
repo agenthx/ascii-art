@@ -132,14 +132,19 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 				}
 				// check if align string is not empty
 				if align != "" { //if an align was specified do this
-					spaces := Spaces(align, len(lineSlice))
+					spaces, flag := Spaces(align, len(lineSlice))
 					switch align {
 					case "right":
 						fmt.Println(spaces, lineSlice+"|")
 					case "left":
-						fmt.Println("|" + lineSlice)
+						fmt.Println("|" + lineSlice + spaces + "|")
 					case "center":
-						fmt.Println("|"+spaces, lineSlice, spaces+"|")
+						if flag {
+							fmt.Println("|"+spaces, lineSlice, spaces+" |")
+						} else {
+							fmt.Println("|"+spaces, lineSlice, spaces+"|")
+						}
+
 					}
 				}
 				// Clear the line slice for the next row
