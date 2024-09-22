@@ -135,11 +135,11 @@ func AsciiFCOJ(str []string, input, sub, color, fileN, align string) {
 					spaces := Spaces(align, len(lineSlice))
 					switch align {
 					case "right":
-						fmt.Println(spaces, lineSlice)
+						fmt.Println(spaces, lineSlice+"|")
 					case "left":
-						fmt.Println(lineSlice)
+						fmt.Println("|" + lineSlice)
 					case "center":
-						fmt.Println(spaces, lineSlice, spaces)
+						fmt.Println("|"+spaces, lineSlice, spaces+"|")
 					}
 				}
 				// Clear the line slice for the next row

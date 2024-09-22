@@ -34,7 +34,7 @@ func Justify(str, lines []string, noOfS, noSpaceLength []int) {
 						lineSlice += space
 					}
 				}
-				fmt.Println(lineSlice)
+				fmt.Println("|" + lineSlice + "|")
 				lineSlice = ""
 			}
 		}
@@ -43,7 +43,10 @@ func Justify(str, lines []string, noOfS, noSpaceLength []int) {
 
 func Ss(i, noOfS, noSpaceLength int) string {
 	var space string
-	for j := 0; j < (width()-noSpaceLength)/noOfS; j++ {
+	if noOfS == 0 {
+		return ""
+	}
+	for j := 2; j < (width()-noSpaceLength)/noOfS; j++ {
 		space += " "
 	}
 	return space

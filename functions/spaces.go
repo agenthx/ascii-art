@@ -6,7 +6,7 @@ func Spaces(align string, NlineSlice int) string {
 	if align == "center" {
 		Nspaces/=2
 	}
-	for i := 1; i < Nspaces; i++ {
+	for i := 3; i < Nspaces; i++ {
 		spaces += " "
 	}
 	return spaces//e
