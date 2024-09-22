@@ -9,5 +9,5 @@ func Spaces(align string, NlineSlice int) string {
 	for i := 1; i < Nspaces; i++ {
 		spaces += " "
 	}
-	return spaces
+	return spaces//e
 }
